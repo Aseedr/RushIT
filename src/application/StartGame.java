@@ -18,15 +18,27 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class StartGame extends Application {
-  private static int Screen_Width = 1280;
-  private static int Screen_Height = 720;
-  private static int Hero_Size = 32;
-  private static int Step = 2;
-  private static int Shoot_Start = 10;
-  private static int Create_Bot = 5;
-  private int Hard_Level = 0;
-  private int Shoot = 0;
-  private int Deraction = 0;
+  private final int SCREEN_WIDTH = 1280;
+  private final int SCREEN_HEIGHT = 720;
+  private final int HERO_SIZE = 32;
+  private final int STEP = 2;
+  private final int SHOOT_START = 10;
+  private final int CREATE_BOT = 5;
+  private final int DOWN = 0;
+  private final int LEFT = 1;
+  private final int RIGHT = 2;
+  private final int UP = 3;
+  private final int EASY_LEVEL = 4;
+  private final int NORMAL_LEVEL = 3;
+  private final int HARD_LEVEL = 2;
+  private final int STRONG_LEVEL = 1;
+  private final int DESERT_MAP = 1;
+  private final int FIELD_MAP = 2;
+  private final int SANDY_ROAD_MAP = 3;
+  private final int RANDOM = 20;
+  private int gameLevel = 0;
+  private int createShoot = 0;
+  private int direction = 0;
   private HashMap<KeyCode, Boolean> keys = new HashMap<>();
   public static ArrayList<Bots> bonuses = new ArrayList<>();
 
@@ -35,13 +47,13 @@ public class StartGame extends Application {
     getResourceAsStream("resorses/models/mainHero.png"));
   ImageView mainHeroView = new ImageView(mainHeroImage);
   Character player = new Character(mainHeroView);
-	
+
   public void bonus(Pane root) {
     // creating bots with random coordinates
-    int random = (int) Math.floor(Math.random() * Hard_Level);
-    int x = (int) Math.floor(Math.random() * Screen_Width);
-    int y = (int) Math.floor(Math.random() * Screen_Height);
-    if (random == Create_Bot) {
+    int random = (int) Math.floor(Math.random() * (RANDOM * gameLevel));
+    int x = (int) Math.floor(Math.random() * SCREEN_WIDTH);
+    int y = (int) Math.floor(Math.random() * SCREEN_HEIGHT);
+    if (random == CREATE_BOT) {
       Image botsImage = new Image(getClass().
         getResourceAsStream("resorses/models/Bots.png"));
       ImageView botsView = new ImageView(botsImage);
@@ -52,7 +64,7 @@ public class StartGame extends Application {
       root.getChildren().addAll(bot);
     }
   }
-	
+
   public void update(Text score, Text health, Scene scene, Pane root) {
     // update score and health on screen
     score.setText("Score: " + player.Score());
@@ -60,47 +72,46 @@ public class StartGame extends Application {
 
     // moving bots
     bonuses.forEach((bot) -> {
-      bot.moveToHero(player.getBoundsInParent().getMaxX() - Hero_Size / 2,
-        player.getBoundsInParent().getMaxY() - Hero_Size / 2);
+      bot.moveToHero(player.getBoundsInParent().getMaxX() - HERO_SIZE / 2,
+        player.getBoundsInParent().getMaxY() - HERO_SIZE / 2);
     });
-	
+
     // moving main hero
     if (isPressed(KeyCode.UP) && player.getTranslateY() >= 0) {
-      Deraction = 2; // up deraction
+      direction = 2; // up direction
       player.animation.play();
-      player.animation.setOffsetY(96);
-      player.moveY(-Step, root);
+      player.animation.setOffsetY(HERO_SIZE * UP);
+      player.moveY(-STEP, root);
     } else if (isPressed(KeyCode.DOWN) &&
-      player.getTranslateY() <= Screen_Height - Hero_Size) {
-      Deraction = 0; // down deraction
+      player.getTranslateY() <= SCREEN_HEIGHT - HERO_SIZE) {
+      direction = 0; // down direction
       player.animation.play();
-      player.animation.setOffsetY(0);
-      player.moveY(Step, root);
+      player.animation.setOffsetY(HERO_SIZE * DOWN);
+      player.moveY(STEP, root);
     } else if (isPressed(KeyCode.RIGHT) &&
-      player.getTranslateX() <= Screen_Width - Hero_Size) {
-      Deraction = 3; // right deraction
+      player.getTranslateX() <= SCREEN_WIDTH - HERO_SIZE) {
+      direction = 3; // right direction
       player.animation.play();
-      player.animation.setOffsetY(64);
-      player.moveX(Step, root);
+      player.animation.setOffsetY(HERO_SIZE * RIGHT);
+      player.moveX(STEP, root);
     } else if (isPressed(KeyCode.LEFT) && player.getTranslateX() >= 0) {
-      Deraction = 1; // left deraction
+      direction = 1; // left direction
       player.animation.play();
-      player.animation.setOffsetY(32);
-      player.moveX(-Step, root);
+      player.animation.setOffsetY(HERO_SIZE * LEFT);
+      player.moveX(-STEP, root);
     } else {
       player.animation.stop();
     }
     player.isBonuseEat(root);
-	
-	
+
     // creating shoots
     if (isPressed(KeyCode.SPACE)){
-      Shoot++;
-      if (Shoot == Shoot_Start){
+    	createShoot++;
+      if (createShoot == SHOOT_START){
         Shoot shoot = new Shoot();
         root.getChildren().addAll(shoot.shootMake(scene, player.
-          getTranslateX(), player.getTranslateY(), Deraction, root));
-        Shoot = 0;
+          getTranslateX(), player.getTranslateY(), direction, root));
+        createShoot = 0;
         player.ScoreAdd(shoot.Score());
         shoot.ScoreClear();
       }
@@ -112,43 +123,43 @@ public class StartGame extends Application {
     return keys.getOrDefault(key, false);
   }
 
-  public void start(Stage primaryStage, int Type, int Map) {
+  public void start(Stage primaryStage, int type, int map) {
     Pane root = new Pane();
-	
+
     // load map
-    if (Map == 1) { // desert map = 1
-      Image map = new Image(getClass().
+    if (map == DESERT_MAP) { // desert map = 1
+      Image gameMap = new Image(getClass().
         getResourceAsStream("resorses/maps/desert.png"));
-      ImageView mapView = new ImageView(map);
-      mapView.setFitHeight(Screen_Height);
-      mapView.setFitWidth(Screen_Width);
+      ImageView mapView = new ImageView(gameMap);
+      mapView.setFitHeight(SCREEN_HEIGHT);
+      mapView.setFitWidth(SCREEN_WIDTH);
       root.getChildren().add(mapView);
-    } else if (Map == 2) { // field map = 2
-      Image map = new Image(getClass().
+    } else if (map == FIELD_MAP) { // field map = 2
+      Image gameMap = new Image(getClass().
         getResourceAsStream("resorses/maps/field.png"));
-      ImageView mapView = new ImageView(map);
-      mapView.setFitHeight(Screen_Height);
-      mapView.setFitWidth(Screen_Width);
+      ImageView mapView = new ImageView(gameMap);
+      mapView.setFitHeight(SCREEN_HEIGHT);
+      mapView.setFitWidth(SCREEN_WIDTH);
       root.getChildren().add(mapView);
-    } else { // sandy road map = 3
-      Image map = new Image(getClass().
+    } else if (map == SANDY_ROAD_MAP) { // sandy road map = 3
+      Image gameMap = new Image(getClass().
         getResourceAsStream("resorses/maps/sandyRoad.png"));
-      ImageView mapView = new ImageView(map);
-      mapView.setFitHeight(Screen_Height);
-      mapView.setFitWidth(Screen_Width);
+      ImageView mapView = new ImageView(gameMap);
+      mapView.setFitHeight(SCREEN_HEIGHT);
+      mapView.setFitWidth(SCREEN_WIDTH);
       root.getChildren().add(mapView);
     }
-	
+
     // load difficulty
-    if (Type == 1) // easy level = 1
-      Hard_Level = 100; // easy = 100
-    else if (Type == 2) // normal level = 2
-      Hard_Level = 70; // normal = 70
-    else if (Type == 3) // hard level = 3
-      Hard_Level = 40; // hard = 40
-    else // strong level = 4
-      Hard_Level = 20; // strong = 20
-	
+    if (type == EASY_LEVEL)
+      gameLevel = EASY_LEVEL;
+    else if (type == NORMAL_LEVEL)
+      gameLevel = NORMAL_LEVEL;
+    else if (type == HARD_LEVEL)
+      gameLevel = HARD_LEVEL;
+    else if (type == STRONG_LEVEL)
+      gameLevel = STRONG_LEVEL;
+
     // write score on screen
     Text score = new Text("Score: " + player.Score());
     score.setFont(Font.loadFont(getClass().
@@ -168,11 +179,11 @@ public class StartGame extends Application {
     health.setTranslateX(1080);
     health.setTranslateY(90);
     health.setVisible(true);
-	
+
     // inset main hero
-    player.setTranslateX(Screen_Width / 2 - Hero_Size / 2);
-    player.setTranslateY(Screen_Height / 2 - Hero_Size / 2);
-    root.setPrefSize(Screen_Width, Screen_Height);
+    player.setTranslateX(SCREEN_WIDTH / 2 - HERO_SIZE / 2);
+    player.setTranslateY(SCREEN_HEIGHT / 2 - HERO_SIZE / 2);
+    root.setPrefSize(SCREEN_WIDTH, SCREEN_HEIGHT);
     root.getChildren().addAll(player);
 
     // analysis pressed key
@@ -181,7 +192,7 @@ public class StartGame extends Application {
     scene.setOnKeyReleased(event -> {
       keys.put(event.getCode(), false);
     });
-    
+
     AnimationTimer timer = new AnimationTimer() {
       @Override
       public void handle(long now) {
@@ -196,7 +207,7 @@ public class StartGame extends Application {
           RushIt backToMainMenu = new RushIt();
           backToMainMenu.start(primaryStage);
         }
-        
+
         // exit if game over
         if (player.Health() <= 0) {
           health.setText("Health: " + player.Health());
@@ -209,9 +220,9 @@ public class StartGame extends Application {
             getResourceAsStream("resorses/font/Chiller-Regular.ttf"), 300));
           gameOver.setFill(Color.RED);
           root.getChildren().add(gameOver);
-          gameOver.setTranslateX((Screen_Width - gameOver.getBoundsInParent()
+          gameOver.setTranslateX((SCREEN_WIDTH - gameOver.getBoundsInParent()
             .getMaxX() - gameOver.getBoundsInParent().getMinX()) / 2);
-          gameOver.setTranslateY((Screen_Height - gameOver.getBoundsInParent()
+          gameOver.setTranslateY((SCREEN_HEIGHT - gameOver.getBoundsInParent()
             .getMaxY() - gameOver.getBoundsInParent().getMinY()) / 2);
           gameOver.setVisible(true);
 
@@ -231,7 +242,7 @@ public class StartGame extends Application {
         }
       }
     };
-    
+
     // start game
     timer.start();
 
@@ -243,7 +254,7 @@ public class StartGame extends Application {
 
   @Override
   public void start(Stage primaryStage) throws Exception {
-	//use for tests
-    start(primaryStage, 1, 1);
+    //use for tests
+    start(primaryStage, 4, 1);
   }
 }

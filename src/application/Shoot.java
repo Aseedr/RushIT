@@ -11,24 +11,28 @@ import javafx.util.Duration;
 
 public class Shoot extends Pane {
   private static final Duration TRANSLATE_DURATION = Duration.seconds(0.3);
-  private static int Hero_Center = 16;
-  private static int Screen_Width = 1280;
-  private static int Screen_Height = 720;
-  private static double TranslateX;
-  private static double TranslateY;
-  private static int Deraction;
-  private static int Shoot_Radius = 4;
+  private final int HERO_CENTER = 16;
+  private final int SCREEN_WIDTH = 1280;
+  private final int SCREEN_HEIGHT = 720;
+  private final int SHOOT_RADIUS = 4;
+  private final int DOWN = 0;
+  private final int LEFT = 1;
+  private final int UP = 2;
+  private final int RIGHT = 3;
+  private static double translateX;
+  private static double translateY;
+  private static int direction;
   private static int score = 0;
   private Bots removeBot = null;
-	
+
   public Circle shootMake(Scene scene, double playerTranslateX,
     double playerTranslateY, int playerDeraction, Pane root) {
     // create shoot
-    TranslateX = playerTranslateX;
-    TranslateY =playerTranslateY;
-    Deraction = playerDeraction;
-    final Circle shoot = new Circle(TranslateX + Hero_Center,
-      TranslateY + Hero_Center, Shoot_Radius, Color.RED);
+    translateX = playerTranslateX;
+    translateY =playerTranslateY;
+    direction = playerDeraction;
+    final Circle shoot = new Circle(translateX + HERO_CENTER,
+      translateY + HERO_CENTER, SHOOT_RADIUS, Color.RED);
     TranslateTransition transition = createTranslateTransition(shoot);
     moveShoot(scene, shoot, transition, root);
     return shoot;
@@ -47,43 +51,43 @@ public class Shoot extends Pane {
     });
     return transition;
   }
-	
+
   private void moveShoot(Scene scene, final Circle shoot,
     final TranslateTransition transition, Pane root) {
-    // moving shoot by deraction
-    if (Deraction == 0) { // down deraction
-      transition.setToX(TranslateX + Hero_Center - shoot.getCenterX());
-      transition.setToY(Screen_Height + Hero_Center - shoot.getCenterY());
+    // moving shoot by direction
+    if (direction == DOWN) { // down direction
+      transition.setToX(translateX + HERO_CENTER - shoot.getCenterX());
+      transition.setToY(SCREEN_HEIGHT + HERO_CENTER - shoot.getCenterY());
       transition.playFromStart();
       isBonuseEatDown(shoot, root);
     }
-    if (Deraction == 1) { // left deraction
-      transition.setToX(- Hero_Center - shoot.getCenterX());
-      transition.setToY(TranslateY + Hero_Center - shoot.getCenterY());
+    if (direction == LEFT) { // left direction
+      transition.setToX(- HERO_CENTER - shoot.getCenterX());
+      transition.setToY(translateY + HERO_CENTER - shoot.getCenterY());
       transition.playFromStart();
       isBonuseEatLeft(shoot, root);
     }
-    if (Deraction == 2) { // up deraction
-      transition.setToX(TranslateX + Hero_Center - shoot.getCenterX());
-      transition.setToY(- Hero_Center - shoot.getCenterY());
+    if (direction == UP) { // up direction
+      transition.setToX(translateX + HERO_CENTER - shoot.getCenterX());
+      transition.setToY(- HERO_CENTER - shoot.getCenterY());
       transition.playFromStart();
       isBonuseEatUp(shoot, root);
     }
-    if (Deraction == 3) { // right deraction
-      transition.setToX(Screen_Width + Hero_Center - shoot.getCenterX());
-      transition.setToY(TranslateY + Hero_Center - shoot.getCenterY());
+    if (direction == RIGHT) { // right direction
+      transition.setToX(SCREEN_WIDTH + HERO_CENTER - shoot.getCenterX());
+      transition.setToY(translateY + HERO_CENTER - shoot.getCenterY());
       transition.playFromStart();
       isBonuseEatRight(shoot, root);
     }
   }
-	
+
   public void isBonuseEatRight(final Circle shoot, Pane root) {
     // shoot into right bots
     StartGame.bonuses.forEach((bot) -> {
       if (bot.getBoundsInParent().getMaxY() -
-        shoot.getBoundsInParent().getMaxY() > - Shoot_Radius * 2 &&
+        shoot.getBoundsInParent().getMaxY() > - SHOOT_RADIUS * 2 &&
         shoot.getBoundsInParent().getMinY() -
-        bot.getBoundsInParent().getMinY() > - Shoot_Radius * 2 &&
+        bot.getBoundsInParent().getMinY() > - SHOOT_RADIUS * 2 &&
         bot.getBoundsInParent().getMinX() >
         shoot.getBoundsInParent().getMinX()) {
         removeBot = bot;
@@ -98,9 +102,9 @@ public class Shoot extends Pane {
     // shoot into left bots
     StartGame.bonuses.forEach((Bot) -> {
       if (Bot.getBoundsInParent().getMaxY() -
-        shoot.getBoundsInParent().getMaxY() > - Shoot_Radius * 2 &&
+        shoot.getBoundsInParent().getMaxY() > - SHOOT_RADIUS * 2 &&
         shoot.getBoundsInParent().getMinY() -
-        Bot.getBoundsInParent().getMinY() > - Shoot_Radius * 2 &&
+        Bot.getBoundsInParent().getMinY() > - SHOOT_RADIUS * 2 &&
         shoot.getBoundsInParent().getMaxX() >
         Bot.getBoundsInParent().getMaxX()) {
         removeBot = Bot;
@@ -110,14 +114,14 @@ public class Shoot extends Pane {
     StartGame.bonuses.remove(removeBot);
     root.getChildren().remove(removeBot);
   }
-	
+
   public void isBonuseEatUp(final Circle shoot, Pane root) {
     // shoot into up bots
     StartGame.bonuses.forEach((Bot) -> {
       if (Bot.getBoundsInParent().getMaxX() -
-        shoot.getBoundsInParent().getMaxX() > - Shoot_Radius * 2 &&
+        shoot.getBoundsInParent().getMaxX() > - SHOOT_RADIUS * 2 &&
         shoot.getBoundsInParent().getMinX() -
-        Bot.getBoundsInParent().getMinX() > - Shoot_Radius * 2 &&
+        Bot.getBoundsInParent().getMinX() > - SHOOT_RADIUS * 2 &&
         shoot.getBoundsInParent().getMaxY() >
         Bot.getBoundsInParent().getMaxY()) {
         removeBot = Bot;
@@ -127,14 +131,14 @@ public class Shoot extends Pane {
     StartGame.bonuses.remove(removeBot);
     root.getChildren().remove(removeBot);
   }
-	
+
   public void isBonuseEatDown(final Circle shoot, Pane root) {
     // shoot into down bots
     StartGame.bonuses.forEach((Bot) -> {
       if (Bot.getBoundsInParent().getMaxX() -
-        shoot.getBoundsInParent().getMaxX() > - Shoot_Radius * 2 &&
+        shoot.getBoundsInParent().getMaxX() > - SHOOT_RADIUS * 2 &&
         shoot.getBoundsInParent().getMinX() -
-        Bot.getBoundsInParent().getMinX() > - Shoot_Radius * 2 &&
+        Bot.getBoundsInParent().getMinX() > - SHOOT_RADIUS * 2 &&
         Bot.getBoundsInParent().getMinY() >
         shoot.getBoundsInParent().getMinY()) {
         removeBot = Bot;
@@ -144,12 +148,12 @@ public class Shoot extends Pane {
     StartGame.bonuses.remove(removeBot);
     root.getChildren().remove(removeBot);
   }
-	
+
   public int Score() {
     // look score
     return score;
   }
-  
+
   public void ScoreClear() {
     // clear score
     score = 0;

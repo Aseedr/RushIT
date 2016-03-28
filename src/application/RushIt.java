@@ -20,10 +20,17 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class RushIt extends Application {
-  private static int Screen_Width = 1280;
-  private static int Screen_Height = 720;
-  private int Type;
-  private int Map;
+  private final static int SCREEN_WIDTH = 1280;
+  private final static int SCREEN_HEIGHT = 720;
+  private final int EASY_LEVEL = 4;
+  private final int NORMAL_LEVEL = 3;
+  private final int HARD_LEVEL = 2;
+  private final int STRONG_LEVEL = 1;
+  private final int DESERT_MAP = 1;
+  private final int FIELD_MAP = 2;
+  private final int SANDY_ROAD_MAP = 3;
+  private int type;
+  private int map;
 
   @Override
   public void start(Stage primaryStage) {
@@ -33,8 +40,8 @@ public class RushIt extends Application {
     Image image = new Image(getClass().
       getResourceAsStream("resorses/screen/mainImage.jpg"));
     ImageView img = new ImageView(image);
-    img.setFitHeight(Screen_Height);
-    img.setFitWidth(Screen_Width);
+    img.setFitHeight(SCREEN_HEIGHT);
+    img.setFitWidth(SCREEN_WIDTH);
     root.getChildren().add(img);
 
     // load and play sound of the main menu
@@ -66,7 +73,7 @@ public class RushIt extends Application {
     MenuItems exit = new MenuItems("Exit");
     PlaceMenu mainMenu = new PlaceMenu(newGame, loadGame,
       highScores, credits, exit);
-		
+
     // second menu buttons
     MenuItems rush = new MenuItems("Rush");
     MenuItems extraRush = new MenuItems("Extra Rush");
@@ -75,7 +82,7 @@ public class RushIt extends Application {
     MenuItems backToMainMenu = new MenuItems("Back");
     PlaceMenu gameType = new PlaceMenu(rush, extraRush,
       survival, superSurvival, backToMainMenu);
-		
+
     // third menu buttons
     MenuItems desert = new MenuItems("Desert");
     MenuItems field = new MenuItems("Field");
@@ -88,52 +95,52 @@ public class RushIt extends Application {
     // the appointment of the first buttons
     newGame.setOnMouseClicked(event -> menuBox.setMenuBoxs(gameType));
     exit.setOnMouseClicked(event -> System.exit(0));
-		
+
     // the appointment of the second buttons
     rush.setOnMouseClicked(event -> {
       menuBox.setMenuBoxs(maps);
-      Type = 1; // easy level = 1
+      type = EASY_LEVEL;
     });
     extraRush.setOnMouseClicked(event -> {
       menuBox.setMenuBoxs(maps);
-      Type = 2; // normal level = 2
+      type = NORMAL_LEVEL;
     });
     survival.setOnMouseClicked(event -> {
       menuBox.setMenuBoxs(maps);
-      Type = 3; // hard level = 3
+      type = HARD_LEVEL;
     });
     superSurvival.setOnMouseClicked(event -> {
       menuBox.setMenuBoxs(maps);
-      Type = 4; // strong level = 4
+      type = STRONG_LEVEL;
     });
     backToMainMenu.setOnMouseClicked(event -> menuBox.setMenuBoxs(mainMenu));
-		
+
     // the appointment of the third buttons
     desert.setOnMouseClicked(event -> {
       StartGame startGame = new StartGame();
-      Map = 1; // desert map = 1
+      map = DESERT_MAP; // desert map = 1
       player.stop();
-      startGame.start(primaryStage, Type, Map);
+      startGame.start(primaryStage, type, map);
     });
     field.setOnMouseClicked(event -> {
       StartGame startGame = new StartGame();
-      Map = 2; // field map = 2
+      map = FIELD_MAP; // field map = 2
       player.stop();
-      startGame.start(primaryStage, Type, Map);
+      startGame.start(primaryStage, type, map);
     });
     sandyRoad.setOnMouseClicked(event -> {
       StartGame startGame = new StartGame();
-      Map = 3; // sandy road map = 3
+      map = SANDY_ROAD_MAP; // sandy road map = 3
       player.stop();
-      startGame.start(primaryStage, Type, Map);
+      startGame.start(primaryStage, type, map);
     });
     backToGameTypeMenu.setOnMouseClicked(event -> menuBox.setMenuBoxs(gameType));
 
     root.getChildren().addAll(menuBox);
     menuBox.setVisible(true);
 
-    Scene scene = new Scene(root, Screen_Width, Screen_Height);
-		
+    Scene scene = new Scene(root, SCREEN_WIDTH, SCREEN_HEIGHT);
+
     // load main icon of the game
     Image icon = new Image(getClass().
       getResourceAsStream("resorses/icon/icon.png"));
@@ -196,7 +203,7 @@ public class RushIt extends Application {
 
       setVisible(false);
       Rectangle screenBox = new
-        Rectangle(Screen_Width, Screen_Height, Color.ALICEBLUE);
+        Rectangle(SCREEN_WIDTH, SCREEN_HEIGHT, Color.ALICEBLUE);
       screenBox.setOpacity(0.04);
       getChildren().addAll(screenBox, placeMenu);
     }

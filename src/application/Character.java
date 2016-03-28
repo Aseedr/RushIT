@@ -6,13 +6,13 @@ import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
 public class Character extends Pane {
-  private ImageView mainHeroView;
-  private static int count = 3;
-  private static int columns = 3;
-  private static int offsetX = 0;
-  private static int offsetY = 0;
-  private static int width = 32;
-  private static int height = 32;
+  private ImageView MainHeroView;
+  private final int count = 3;
+  private final int columns = 3;
+  private final int offsetX = 0;
+  private final int offsetY = 0;
+  private final int width = 32;
+  private final int height = 32;
   private int score = 0;
   private int health = 100;
   private Bots removeBot = null;
@@ -20,8 +20,8 @@ public class Character extends Pane {
 
   public Character(ImageView modelView) {
     // creature main hero
-    this.mainHeroView = modelView;
-    this.mainHeroView.setViewport(new Rectangle2D(offsetX, offsetY, width, height));
+    this.MainHeroView = modelView;
+    this.MainHeroView.setViewport(new Rectangle2D(offsetX, offsetY, width, height));
     animation = new SpriteAnimation(modelView, Duration.millis(200),
       count, columns, offsetX, offsetY, width, height);
     getChildren().addAll(modelView);
@@ -40,7 +40,7 @@ public class Character extends Pane {
   }
 
   public void moveY(int y, Pane root) {
-	// moving main hero by Y coordinate
+    // moving main hero by Y coordinate
     boolean down = y > 0 ? true : false;
     for (int i = 0; i < Math.abs(y); i++) {
       if (down)
@@ -62,17 +62,17 @@ public class Character extends Pane {
     StartGame.bonuses.remove(removeBot);
     root.getChildren().remove(removeBot);
   }
-	
+
   public void ScoreAdd(int number) {
     // add to score
     score += number;
   }
-	
+
   public int Score() {
     // to look score
     return score;
   }
-	
+
   public int Health(){
     // to look health
     return health;

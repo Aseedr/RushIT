@@ -8,7 +8,7 @@ import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 
 public class SpriteAnimation extends Transition {
-  private final ImageView imageView;
+  private final ImageView ImageView;
   private final int count;
   private final int columns;
   private int offsetX;
@@ -19,7 +19,7 @@ public class SpriteAnimation extends Transition {
   public SpriteAnimation(ImageView imageView, Duration duration, int count,
     int columns, int offsetX, int offsetY, int width, int height) {
     // creating sprite animation for main hero or bots
-    this.imageView = imageView;
+    this.ImageView = imageView;
     this.count = count;
     this.columns = columns;
     this.offsetX = offsetX;
@@ -29,7 +29,7 @@ public class SpriteAnimation extends Transition {
     setCycleDuration(duration);
     setCycleCount(Animation.INDEFINITE);
     setInterpolator(Interpolator.LINEAR);
-    this.imageView.setViewport(new Rectangle2D(offsetX, offsetY, width, height));
+    this.ImageView.setViewport(new Rectangle2D(offsetX, offsetY, width, height));
   }
 
   public void setOffsetX(int x) {
@@ -47,6 +47,6 @@ public class SpriteAnimation extends Transition {
     final int index = Math.min((int) Math.floor(count * frac), count - 1);
     final int x = (index % columns) * width + offsetX;
     final int y = (index / columns) * height + offsetY;
-    imageView.setViewport(new Rectangle2D(x, y, width, height));
+    ImageView.setViewport(new Rectangle2D(x, y, width, height));
   }
 }
