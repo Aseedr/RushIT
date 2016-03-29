@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da9b358b_8c03940f",
+        "filename": "src/application/Bots.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T18:40:59Z",
+      "side": 1,
+      "message": "https://google.github.io/styleguide/javaguide.html#s5.2.4-constant-names",
+      "range": {
+        "startLine": 9,
+        "startChar": 1,
+        "endLine": 10,
+        "endChar": 29
+      },
+      "revId": "63380bd7dd28cbb640dd48336bde59b258abde3f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
