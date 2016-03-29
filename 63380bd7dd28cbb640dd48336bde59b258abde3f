@@ -22,6 +22,29 @@
       "revId": "63380bd7dd28cbb640dd48336bde59b258abde3f",
       "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_c7105751",
+        "filename": "src/application/Character.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 10,
+      "author": {
+        "id": 1007635
+      },
+      "writtenOn": "2016-03-29T18:41:50Z",
+      "side": 1,
+      "message": "define?",
+      "range": {
+        "startLine": 10,
+        "startChar": 23,
+        "endLine": 10,
+        "endChar": 26
+      },
+      "revId": "63380bd7dd28cbb640dd48336bde59b258abde3f",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
     }
   ]
 }
