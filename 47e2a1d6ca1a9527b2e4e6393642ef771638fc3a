@@ -1,0 +1,314 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "da9b358b_cc651ce2",
+        "filename": "src/application/Bots.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 39,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "before if construction",
+      "range": {
+        "startLine": 39,
+        "startChar": 10,
+        "endLine": 39,
+        "endChar": 27
+      },
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_ac4bf858",
+        "filename": "src/application/Bots.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "you can make OFFSET_ANIMATION \u003d 32 and use 1*OFFSET_ANIMATION",
+      "range": {
+        "startLine": 40,
+        "startChar": 31,
+        "endLine": 40,
+        "endChar": 33
+      },
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_4c790c93",
+        "filename": "src/application/Bots.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 73,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "2 * OFFSET_ANIMATION",
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_ec3a20cd",
+        "filename": "src/application/Character.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 9,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "lowerCamelCase",
+      "range": {
+        "startLine": 9,
+        "startChar": 20,
+        "endLine": 9,
+        "endChar": 32
+      },
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_4c522c15",
+        "filename": "src/application/Character.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 80,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "lowerCamelCase",
+      "range": {
+        "startLine": 66,
+        "startChar": 1,
+        "endLine": 80,
+        "endChar": 1
+      },
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_0c0e6434",
+        "filename": "src/application/RushIt.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 31,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "you have the same variables in other class, what\u0027s about interfaces?  Make interface with final static fields.",
+      "range": {
+        "startLine": 25,
+        "startChar": 2,
+        "endLine": 31,
+        "endChar": 39
+      },
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_3112a563",
+        "filename": "src/application/Shoot.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 32,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "where is \"space\"?",
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_d1093933",
+        "filename": "src/application/Shoot.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "lowerCamelCase",
+      "range": {
+        "startLine": 152,
+        "startChar": 13,
+        "endLine": 152,
+        "endChar": 18
+      },
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_b106b51e",
+        "filename": "src/application/Shoot.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 157,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "lowevCamelCase",
+      "range": {
+        "startLine": 157,
+        "startChar": 14,
+        "endLine": 157,
+        "endChar": 24
+      },
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_511d2972",
+        "filename": "src/application/SpriteAnimation.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "lowerCamelCase",
+      "range": {
+        "startLine": 11,
+        "startChar": 26,
+        "endLine": 11,
+        "endChar": 36
+      },
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_71314d0b",
+        "filename": "src/application/StartGame.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 37,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "enum",
+      "range": {
+        "startLine": 27,
+        "startChar": 2,
+        "endLine": 37,
+        "endChar": 39
+      },
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_51364904",
+        "filename": "src/application/StartGame.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 81,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "enum",
+      "range": {
+        "startLine": 81,
+        "startChar": 6,
+        "endLine": 81,
+        "endChar": 20
+      },
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_f1255dc2",
+        "filename": "src/application/StartGame.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 161,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "enum + switch",
+      "range": {
+        "startLine": 154,
+        "startChar": 3,
+        "endLine": 161,
+        "endChar": 31
+      },
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "da9b358b_912cd1ac",
+        "filename": "src/application/StartGame.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 258,
+      "author": {
+        "id": 1007669
+      },
+      "writtenOn": "2016-03-29T14:42:27Z",
+      "side": 1,
+      "message": "what is mean?",
+      "range": {
+        "startLine": 258,
+        "startChar": 24,
+        "endLine": 258,
+        "endChar": 28
+      },
+      "revId": "47e2a1d6ca1a9527b2e4e6393642ef771638fc3a",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
